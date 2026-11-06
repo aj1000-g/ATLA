@@ -1,6 +1,6 @@
 /**
- * ALTA - Mock Data Store
- * Comprehensive realistic data for Student Dashboard, AI Learning, Games, and Analytics
+ * ALTA - Data Store (Clean Onboarding & Real Initial States)
+ * Zero invented progress: New users start with honest Level 1, 0 streak, 0 tokens, and Day 1 of the 90-Day Challenge.
  */
 
 const ALTA_DATA = {
@@ -9,16 +9,16 @@ const ALTA_DATA = {
     username: "@alexj_dev",
     email: "alex.johnson@example.com",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
-    level: 12,
-    levelTitle: "Logic Architect",
-    xp: 4250,
-    xpToNext: 5000,
-    tokens: 1450,
-    streak: 14,
+    level: 1,
+    levelTitle: "Logic Novice",
+    xp: 0,
+    xpToNext: 250,
+    tokens: 0,
+    streak: 0,
     preferredLanguage: "Python",
-    joinedDate: "October 1, 2026",
-    role: "Full-Stack Apprentice",
-    bio: "Passionate CS student mastering algorithmic reasoning and independent problem-solving."
+    joinedDate: "Today",
+    role: "Apprentice Learner",
+    bio: "Starting the ALTA 90-Day Challenge to build permanent algorithmic reasoning."
   },
 
   quotes: [
@@ -41,129 +41,99 @@ const ALTA_DATA = {
 
   weeklyActivity: {
     days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    minutes: [45, 60, 30, 90, 50, 75, 40],
-    problemsSolved: [2, 3, 1, 4, 2, 3, 2]
+    minutes: [0, 0, 0, 0, 0, 0, 0],
+    problemsSolved: [0, 0, 0, 0, 0, 0, 0]
   },
 
   skills: [
-    { name: "Logic & Conditionals", mastery: 92, status: "Mastered", color: "#10B981" },
-    { name: "Array Manipulation", mastery: 85, status: "Advanced", color: "#00F2FE" },
-    { name: "Hash Maps & Sets", mastery: 78, status: "Proficient", color: "#A855F7" },
-    { name: "Time & Space Complexity", mastery: 68, status: "Developing", color: "#3B82F6" },
-    { name: "Recursion & Trees", mastery: 45, status: "Learning", color: "#F59E0B" }
+    { name: "Logic & Conditionals", mastery: 0, status: "Not Started", color: "#10B981" },
+    { name: "Array Manipulation", mastery: 0, status: "Not Started", color: "#00F2FE" },
+    { name: "Hash Maps & Sets", mastery: 0, status: "Not Started", color: "#A855F7" },
+    { name: "Time & Space Complexity", mastery: 0, status: "Not Started", color: "#3B82F6" },
+    { name: "Recursion & Trees", mastery: 0, status: "Not Started", color: "#F59E0B" }
   ],
 
-  recentActivities: [
-    {
-      id: "act-1",
-      title: "Foundational: Hash Map Lookup Efficiency",
-      category: "Learn with AI",
-      time: "2 hours ago",
-      tokens: "+30",
-      status: "Completed",
-      accuracy: "100%"
-    },
-    {
-      id: "act-2",
-      title: "Array Quest: Level 3 Binary Partition",
-      category: "Game Zone",
-      time: "Yesterday",
-      tokens: "+25",
-      status: "Won",
-      accuracy: "95%"
-    },
-    {
-      id: "act-3",
-      title: "Original Problem: Valid Palindrome II",
-      category: "Practice Arena",
-      time: "2 days ago",
-      tokens: "+60",
-      status: "Solved (Hint-Free)",
-      accuracy: "100%"
-    },
-    {
-      id: "act-4",
-      title: "Diagnostic: Two Sum Approach Reasoning",
-      category: "AI Diagnostic",
-      time: "3 days ago",
-      tokens: "+15",
-      status: "Passed",
-      accuracy: "90%"
-    }
-  ],
+  // Honest empty state for new user
+  recentActivities: [],
 
+  // All 8 badges start locked with transparent progression targets
   badges: [
     {
       id: "b1",
       title: "First Problem Solved",
       tier: "Common",
       icon: "🎯",
-      description: "Successfully solved your first logic challenge independently.",
-      earnedDate: "Oct 04, 2026",
-      unlocked: true,
-      progress: 100
+      description: "Successfully solve your first logic challenge independently.",
+      earnedDate: null,
+      unlocked: false,
+      progress: 0,
+      progressLabel: "0 / 1 solved"
     },
     {
       id: "b2",
       title: "7-Day Streak",
       tier: "Common",
       icon: "🔥",
-      description: "Maintained a continuous daily coding streak for 7 consecutive days.",
-      earnedDate: "Oct 11, 2026",
-      unlocked: true,
-      progress: 100
+      description: "Maintain a continuous daily coding streak for 7 consecutive days.",
+      earnedDate: null,
+      unlocked: false,
+      progress: 0,
+      progressLabel: "0 / 7 streak days"
     },
     {
       id: "b3",
       title: "Logic Builder",
       tier: "Rare",
       icon: "🧩",
-      description: "Completed 15 foundational logic and conditional reasoning exercises.",
-      earnedDate: "Oct 22, 2026",
-      unlocked: true,
-      progress: 100
+      description: "Complete 15 foundational logic and conditional reasoning exercises.",
+      earnedDate: null,
+      unlocked: false,
+      progress: 0,
+      progressLabel: "0 / 15 tasks"
     },
     {
       id: "b4",
       title: "Hint-Free Hero",
       tier: "Epic",
       icon: "⚡",
-      description: "Solved 10 original problems without unlocking any hints.",
-      earnedDate: "Nov 01, 2026",
-      unlocked: true,
-      progress: 100
+      description: "Solve 10 original problems without unlocking any hints.",
+      earnedDate: null,
+      unlocked: false,
+      progress: 0,
+      progressLabel: "0 / 10 hint-free"
     },
     {
       id: "b5",
       title: "Array Explorer",
       tier: "Rare",
       icon: "📊",
-      description: "Mastered pointer arithmetic, in-place swaps, and sliding windows.",
-      earnedDate: "Nov 03, 2026",
-      unlocked: true,
-      progress: 100
+      description: "Master pointer arithmetic, in-place swaps, and sliding windows.",
+      earnedDate: null,
+      unlocked: false,
+      progress: 0,
+      progressLabel: "0 / 5 array drills"
     },
     {
       id: "b6",
       title: "Debugging Expert",
       tier: "Rare",
       icon: "🐞",
-      description: "Diagnosed and resolved 20 intentional edge-case bugs.",
+      description: "Diagnose and resolve 20 intentional edge-case bugs.",
       earnedDate: null,
       unlocked: false,
-      progress: 65,
-      progressLabel: "13 / 20 bugs resolved"
+      progress: 0,
+      progressLabel: "0 / 20 bugs resolved"
     },
     {
       id: "b7",
       title: "30-Day Consistency",
       tier: "Epic",
       icon: "🛡️",
-      description: "Demonstrated 30 days of genuine active logic practice.",
+      description: "Demonstrate 30 days of genuine active logic practice.",
       earnedDate: null,
       unlocked: false,
-      progress: 47,
-      progressLabel: "14 / 30 active days"
+      progress: 0,
+      progressLabel: "0 / 30 active days"
     },
     {
       id: "b8",
@@ -173,8 +143,8 @@ const ALTA_DATA = {
       description: "Complete all 90-Day Challenge milestones and capstone assessment.",
       earnedDate: null,
       unlocked: false,
-      progress: 42,
-      progressLabel: "38 / 90 challenge days"
+      progress: 0,
+      progressLabel: "Day 1 / 90 days"
     }
   ],
 
@@ -215,50 +185,44 @@ const ALTA_DATA = {
       { rank: 4, name: "Elena Rostova", level: 15, tokens: 2890, independentRate: "88.0%", streak: 21 },
       { rank: 5, name: "Devon Clark", level: 14, tokens: 2650, independentRate: "86.5%", streak: 19 },
       { rank: 6, name: "Aisha Patel", level: 13, tokens: 2100, independentRate: "85.0%", streak: 17 },
-      { rank: 7, name: "Alex Johnson (You)", level: 12, tokens: 1450, independentRate: "84.2%", streak: 14, isUser: true },
-      { rank: 8, name: "Liam O'Connor", level: 11, tokens: 1320, independentRate: "81.0%", streak: 12 },
-      { rank: 9, name: "Zara Kim", level: 10, tokens: 1180, independentRate: "79.5%", streak: 9 },
-      { rank: 10, name: "Tariq Mansoor", level: 9, tokens: 980, independentRate: "78.0%", streak: 8 }
+      { rank: 7, name: "Liam O'Connor", level: 11, tokens: 1320, independentRate: "81.0%", streak: 12 },
+      { rank: 8, name: "Zara Kim", level: 10, tokens: 1180, independentRate: "79.5%", streak: 9 },
+      { rank: 9, name: "Tariq Mansoor", level: 9, tokens: 980, independentRate: "78.0%", streak: 8 },
+      { rank: 10, name: "Alex Johnson (You)", level: 1, tokens: 0, independentRate: "--%", streak: 0, isUser: true }
     ]
   },
 
+  // 90-Day Challenge: Day 1 honest start
   challenge90Days: {
-    startDate: "October 1, 2026",
-    currentDay: 38,
-    activeDays: 36,
-    streak: 14,
-    totalCodingTasksCompleted: 48,
-    originalProblemsSolved: 18,
-    independentSolvingPerformance: 84.2,
-    skillImprovementPercent: "+42%",
-    finalAssessmentStatus: "Unlocked at Day 80",
-    eligibilityStatus: "In Progress", // "Not Eligible", "In Progress", "Eligible"
+    startDate: "Today",
+    currentDay: 1,
+    activeDays: 0,
+    streak: 0,
+    totalCodingTasksCompleted: 0,
+    originalProblemsSolved: 0,
+    independentSolvingPerformance: 0.0,
+    skillImprovementPercent: "0%",
+    finalAssessmentStatus: "Locked until Day 80 & 60 Tasks Completed",
+    eligibilityStatus: "Not Eligible", // Starts as Not Eligible
     milestones: [
-      { week: 1, title: "Algorithmic Intuition & Logic Foundations", status: "completed", tasks: 6 },
-      { week: 2, title: "Array Traversal & In-Place Pointer Manipulation", status: "completed", tasks: 7 },
-      { week: 3, title: "Hash Tables, Space-Time Tradeoffs & Lookup Sets", status: "completed", tasks: 8 },
-      { week: 4, title: "Two-Pointer Strategy & Sliding Windows", status: "completed", tasks: 8 },
-      { week: 5, title: "Stack & Queue Mechanics in Logic Framing", status: "completed", tasks: 7 },
-      { week: 6, title: "Binary Search & Divide-and-Conquer Mental Models", status: "in-progress", tasks: 5 },
-      { week: 7, title: "Recursion Trees & Backtracking Deconstruction", status: "locked", tasks: 6 },
-      { week: 8, title: "Dynamic Programming Memoization vs Tabulation", status: "locked", tasks: 7 },
-      { week: 9, title: "Graph Traversal BFS & DFS Decomposition", status: "locked", tasks: 6 },
-      { week: 10, title: "Advanced Data Structures & Heap Priority", status: "locked", tasks: 6 },
-      { week: 11, title: "Complex Transfer Problems & Stress Testing", status: "locked", tasks: 8 },
-      { week: 12, title: "Capstone Blind Assessment & Certification Defense", status: "locked", tasks: 4 }
+      { week: 1, title: "Algorithmic Intuition & Logic Foundations", status: "in-progress", tasks: 6, completedTasks: 0 },
+      { week: 2, title: "Array Traversal & In-Place Pointer Manipulation", status: "locked", tasks: 7, completedTasks: 0 },
+      { week: 3, title: "Hash Tables, Space-Time Tradeoffs & Lookup Sets", status: "locked", tasks: 8, completedTasks: 0 },
+      { week: 4, title: "Two-Pointer Strategy & Sliding Windows", status: "locked", tasks: 8, completedTasks: 0 },
+      { week: 5, title: "Stack & Queue Mechanics in Logic Framing", status: "locked", tasks: 7, completedTasks: 0 },
+      { week: 6, title: "Binary Search & Divide-and-Conquer Mental Models", status: "locked", tasks: 5, completedTasks: 0 },
+      { week: 7, title: "Recursion Trees & Backtracking Deconstruction", status: "locked", tasks: 6, completedTasks: 0 },
+      { week: 8, title: "Dynamic Programming Memoization vs Tabulation", status: "locked", tasks: 7, completedTasks: 0 },
+      { week: 9, title: "Graph Traversal BFS & DFS Decomposition", status: "locked", tasks: 6, completedTasks: 0 },
+      { week: 10, title: "Advanced Data Structures & Heap Priority", status: "locked", tasks: 6, completedTasks: 0 },
+      { week: 11, title: "Complex Transfer Problems & Stress Testing", status: "locked", tasks: 8, completedTasks: 0 },
+      { week: 12, title: "Capstone Blind Assessment & Certification Defense", status: "locked", tasks: 4, completedTasks: 0 }
     ]
   },
 
-  tokenTransactions: [
-    { id: "tx-1", desc: "Independently solved 'Two Sum' with Hash Map", amount: "+50", date: "Today, 11:20 AM", type: "earn" },
-    { id: "tx-2", desc: "Completed Foundational Task: Pair Comparison", amount: "+25", date: "Today, 10:45 AM", type: "earn" },
-    { id: "tx-3", desc: "Unlocked Conceptual Hint on Transfer Problem", amount: "-5", date: "Yesterday", type: "spend" },
-    { id: "tx-4", desc: "7-Day Streak Consistency Reward", amount: "+40", date: "Nov 02, 2026", type: "earn" },
-    { id: "tx-5", desc: "Won Loop Runner Level 3 Challenge", amount: "+30", date: "Oct 31, 2026", type: "earn" },
-    { id: "tx-6", desc: "Mastered Array Traversal foundational unit", amount: "+35", date: "Oct 28, 2026", type: "earn" }
-  ],
+  // Honest empty wallet for new user
+  tokenTransactions: [],
 
-  // Diagnostic questions for Problem 1 (Two Sum)
   problemsCatalog: [
     {
       id: "two-sum",
@@ -299,6 +263,7 @@ const ALTA_DATA = {
           ]
         }
       ],
+      // All 3 foundational tasks start as uncompleted
       foundationalTasks: [
         {
           id: "task-1",
@@ -310,7 +275,7 @@ const ALTA_DATA = {
           testCases: [
             { input: "[2, 7, 11]", expected: "[(0, 2), (1, 7), (2, 11)]" }
           ],
-          completed: true
+          completed: false
         },
         {
           id: "task-2",
@@ -323,7 +288,7 @@ const ALTA_DATA = {
             { input: "x=7, target=9, seen_set={2, 5}", expected: "True" },
             { input: "x=11, target=9, seen_set={2, 5}", expected: "False" }
           ],
-          completed: true
+          completed: false
         },
         {
           id: "task-3",
