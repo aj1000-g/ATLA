@@ -7,7 +7,7 @@ const ALTA_AI = {
   currentProblem: null,
   diagnosticIndex: 0,
   userResponses: [],
-  currentFoundationalTaskIndex: 2, // Task 3 is in progress
+  currentFoundationalTaskIndex: 0, // Starts at Task 1 for clean onboarding
   unlockedHintStage: 0,
   isOriginalUnlocked: false,
 

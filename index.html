@@ -144,7 +144,9 @@
 
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white">
             Stop Memorizing Solutions.<br>
-            <span class="alta-gradient-accent">Start Building Logic.</span>
+            <span class="text-rotate-wrapper">
+              <span class="alta-gradient-accent text-rotate-item text-rotate-visible" id="heroRotatingText">Build Logic</span>
+            </span>
           </h1>
 
           <p class="text-slate-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
@@ -153,7 +155,7 @@
 
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
             <button onclick="ALTA_APP.togglePortalMode('portal'); ALTA_APP.goToLearnStep(1);" class="w-full sm:w-auto alta-btn-primary px-8 py-4 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 group">
-              Start Learning Free
+              Start Learning
               <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
@@ -180,6 +182,24 @@
 
         <div class="lg:col-span-5 relative z-10">
           <div class="absolute -inset-1 bg-gradient-to-r from-blue-600/30 via-violet-600/30 to-cyan-500/30 rounded-2xl blur-xl opacity-75"></div>
+
+          <!-- Floating Visual Card 1: Top-Left (Slow keyframe float) -->
+          <div class="floating-card hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-[#0F142A]/90 border border-violet-500/30 backdrop-blur-md shadow-xl text-xs absolute -top-5 -left-4 z-20">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="font-mono text-slate-300 font-medium">Invariant: <span class="text-emerald-400">Hash Lookup O(1)</span></span>
+          </div>
+
+          <!-- Floating Visual Card 2: Top-Right (Alternate phase float) -->
+          <div class="floating-card-alt hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-[#0F142A]/90 border border-cyan-500/30 backdrop-blur-md shadow-xl text-xs absolute -top-4 -right-4 z-20">
+            <span class="text-amber-400 font-bold">🎯</span>
+            <span class="text-slate-200 font-medium">90-Day Challenge: <span class="text-cyan-300 font-semibold">Day 1</span></span>
+          </div>
+
+          <!-- Floating Visual Card 3: Bottom-Right (Slow keyframe float) -->
+          <div class="floating-card hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-[#0F142A]/90 border border-amber-500/30 backdrop-blur-md shadow-xl text-xs absolute -bottom-5 -right-4 z-20">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            <span class="text-slate-300 text-xs">Diagnostic: <span class="text-amber-300 font-medium">Loop Invariants</span></span>
+          </div>
 
           <div class="relative alta-card bg-[#0A0D1D] p-5 border border-white/10 rounded-2xl shadow-2xl space-y-4">
             
@@ -220,7 +240,7 @@
             <div class="grid grid-cols-2 gap-3 pt-1">
               <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
                 <span class="text-[10px] text-slate-400 block">Independence Score</span>
-                <span class="text-sm font-bold text-emerald-400">84.2% Verified</span>
+                <span class="text-sm font-bold text-emerald-400">Target: &gt;70% Independent</span>
               </div>
               <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
                 <span class="text-[10px] text-slate-400 block">Weakness Detected</span>
@@ -238,7 +258,7 @@
     <section id="problem" class="py-24 px-6 lg:px-12 border-t border-white/5 bg-[#070913]">
       <div class="max-w-7xl mx-auto space-y-16">
         
-        <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div class="text-center max-w-3xl mx-auto space-y-4 reveal-on-scroll">
           <span class="text-xs font-bold uppercase tracking-widest text-violet-400">The Flaw in Coding Education</span>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
             Why Traditional Learning Fails To Build <span class="alta-gradient-accent">True Thinking</span>
@@ -250,7 +270,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
-          <div class="alta-card p-6 space-y-3 border-rose-500/20 bg-rose-950/[0.05]">
+          <div class="alta-card p-6 space-y-3 border-rose-500/20 bg-rose-950/[0.05] reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 text-lg font-bold">
               01
             </div>
@@ -260,7 +280,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3 border-amber-500/20 bg-amber-950/[0.05]">
+          <div class="alta-card p-6 space-y-3 border-amber-500/20 bg-amber-950/[0.05] reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-lg font-bold">
               02
             </div>
@@ -270,7 +290,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3 border-purple-500/20 bg-purple-950/[0.05]">
+          <div class="alta-card p-6 space-y-3 border-purple-500/20 bg-purple-950/[0.05] reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-lg font-bold">
               03
             </div>
@@ -280,7 +300,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3 border-blue-500/20 bg-blue-950/[0.05]">
+          <div class="alta-card p-6 space-y-3 border-blue-500/20 bg-blue-950/[0.05] reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-lg font-bold">
               04
             </div>
@@ -290,7 +310,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3 border-cyan-500/20 bg-cyan-950/[0.05] md:col-span-2 lg:col-span-2">
+          <div class="alta-card p-6 space-y-3 border-cyan-500/20 bg-cyan-950/[0.05] md:col-span-2 lg:col-span-2 reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-lg font-bold">
               05
             </div>
@@ -309,7 +329,7 @@
     <section id="how-it-works" class="py-24 px-6 lg:px-12 border-t border-white/5 bg-[#090C19]/50">
       <div class="max-w-7xl mx-auto space-y-16">
         
-        <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div class="text-center max-w-3xl mx-auto space-y-4 reveal-on-scroll">
           <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">The 4-Step Methodology</span>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
             How ALTA Engineers Your <span class="alta-gradient-accent">Problem-Solving Mind</span>
@@ -321,7 +341,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           
-          <div class="alta-card p-6 space-y-4 relative">
+          <div class="alta-card p-6 space-y-4 relative reveal-on-scroll">
             <div class="w-12 h-12 rounded-2xl bg-blue-600/10 border border-blue-500/30 flex items-center justify-center text-blue-400 font-extrabold text-lg">
               01
             </div>
@@ -332,7 +352,7 @@
             <div class="pt-2 text-[11px] font-mono text-blue-400">Input: Any DSA Challenge</div>
           </div>
 
-          <div class="alta-card p-6 space-y-4 relative">
+          <div class="alta-card p-6 space-y-4 relative reveal-on-scroll">
             <div class="w-12 h-12 rounded-2xl bg-violet-600/10 border border-violet-500/30 flex items-center justify-center text-violet-400 font-extrabold text-lg">
               02
             </div>
@@ -343,7 +363,7 @@
             <div class="pt-2 text-[11px] font-mono text-violet-400">Output: Cognitive Gap Analysis</div>
           </div>
 
-          <div class="alta-card p-6 space-y-4 relative">
+          <div class="alta-card p-6 space-y-4 relative reveal-on-scroll">
             <div class="w-12 h-12 rounded-2xl bg-cyan-600/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-extrabold text-lg">
               03
             </div>
@@ -354,7 +374,7 @@
             <div class="pt-2 text-[11px] font-mono text-cyan-400">Practice: Foundational Invariants</div>
           </div>
 
-          <div class="alta-card p-6 space-y-4 relative">
+          <div class="alta-card p-6 space-y-4 relative reveal-on-scroll">
             <div class="w-12 h-12 rounded-2xl bg-emerald-600/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-extrabold text-lg">
               04
             </div>
@@ -374,7 +394,7 @@
     <section id="features" class="py-24 px-6 lg:px-12 border-t border-white/5 bg-[#070913]">
       <div class="max-w-7xl mx-auto space-y-16">
         
-        <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div class="text-center max-w-3xl mx-auto space-y-4 reveal-on-scroll">
           <span class="text-xs font-bold uppercase tracking-widest text-violet-400">Architected for Depth</span>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
             Core Features Built for <span class="alta-gradient-accent">Real Engineering</span>
@@ -386,7 +406,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          <div class="alta-card p-6 space-y-3">
+          <div class="alta-card p-6 space-y-3 reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-xl">
               🧠
             </div>
@@ -396,7 +416,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3">
+          <div class="alta-card p-6 space-y-3 reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl">
               🧩
             </div>
@@ -406,7 +426,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3">
+          <div class="alta-card p-6 space-y-3 reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-xl">
               🔍
             </div>
@@ -416,7 +436,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3">
+          <div class="alta-card p-6 space-y-3 reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-xl">
               💻
             </div>
@@ -426,7 +446,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3">
+          <div class="alta-card p-6 space-y-3 reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-xl">
               💡
             </div>
@@ -436,7 +456,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3">
+          <div class="alta-card p-6 space-y-3 reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-xl">
               🎮
             </div>
@@ -446,7 +466,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3">
+          <div class="alta-card p-6 space-y-3 reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-xl">
               📈
             </div>
@@ -456,7 +476,7 @@
             </p>
           </div>
 
-          <div class="alta-card p-6 space-y-3">
+          <div class="alta-card p-6 space-y-3 reveal-on-scroll">
             <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-xl">
               🏆
             </div>
@@ -475,7 +495,7 @@
     <section id="game-zone" class="py-24 px-6 lg:px-12 border-t border-white/5 bg-[#090C19]/40">
       <div class="max-w-7xl mx-auto space-y-16">
         
-        <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div class="text-center max-w-3xl mx-auto space-y-4 reveal-on-scroll">
           <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Algorithmic Arcade</span>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
             Learn Fundamentals Through <span class="alta-gradient-accent">Active Play</span>
@@ -487,7 +507,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          <div class="alta-card p-6 space-y-4 relative overflow-hidden group">
+          <div class="alta-card p-6 space-y-4 relative overflow-hidden group reveal-on-scroll">
             <div class="h-44 rounded-xl bg-gradient-to-tr from-cyan-950/60 via-slate-900 to-slate-950 border border-cyan-500/20 p-4 flex flex-col justify-between">
               <div class="flex items-center justify-between text-xs">
                 <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono">Loop Runner</span>
@@ -514,7 +534,7 @@
             </button>
           </div>
 
-          <div class="alta-card p-6 space-y-4 relative overflow-hidden group">
+          <div class="alta-card p-6 space-y-4 relative overflow-hidden group reveal-on-scroll">
             <div class="h-44 rounded-xl bg-gradient-to-tr from-purple-950/60 via-slate-900 to-slate-950 border border-purple-500/20 p-4 flex flex-col justify-between">
               <div class="flex items-center justify-between text-xs">
                 <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono">Array Quest</span>
@@ -538,7 +558,7 @@
             </button>
           </div>
 
-          <div class="alta-card p-6 space-y-4 relative overflow-hidden group">
+          <div class="alta-card p-6 space-y-4 relative overflow-hidden group reveal-on-scroll">
             <div class="h-44 rounded-xl bg-gradient-to-tr from-blue-950/60 via-slate-900 to-slate-950 border border-blue-500/20 p-4 flex flex-col justify-between">
               <div class="flex items-center justify-between text-xs">
                 <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono">Logic Battle</span>
@@ -570,7 +590,7 @@
     <section id="challenge" class="py-24 px-6 lg:px-12 border-t border-white/5 bg-[#070913]">
       <div class="max-w-7xl mx-auto space-y-16">
         
-        <div class="alta-card p-8 sm:p-12 border-amber-500/20 bg-gradient-to-br from-[#0E1329] via-[#090C19] to-[#0E1329] rounded-3xl relative overflow-hidden">
+        <div class="alta-card p-8 sm:p-12 border-amber-500/20 bg-gradient-to-br from-[#0E1329] via-[#090C19] to-[#0E1329] rounded-3xl relative overflow-hidden reveal-on-scroll">
           
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
@@ -617,14 +637,14 @@
                 </div>
 
                 <div class="space-y-2 text-center py-4">
-                  <p class="text-[10px] text-slate-400 uppercase tracking-widest">Certificate of Distinction</p>
+                  <p class="text-[10px] text-slate-400 uppercase tracking-widest">Certificate of Distinction (Specimen)</p>
                   <h4 class="text-lg font-bold text-white">Algorithmic Logic & Thinking</h4>
                   <p class="text-xs text-slate-300">Awarded for demonstrated independence across 90 deliberate practice days.</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-2 text-[11px] pt-2 border-t border-white/10">
-                  <div class="text-slate-400">Independence: <strong class="text-white">84.2%</strong></div>
-                  <div class="text-slate-400">Active Days: <strong class="text-white">75 / 90</strong></div>
+                  <div class="text-slate-400">Min. Independence: <strong class="text-white">&gt;70%</strong></div>
+                  <div class="text-slate-400">Required Days: <strong class="text-white">75+ / 90</strong></div>
                 </div>
               </div>
             </div>
@@ -639,7 +659,7 @@
     <!-- SECTION 8: DAILY MOTIVATION -->
     <section class="py-16 px-6 lg:px-12 bg-[#070913]">
       <div class="max-w-4xl mx-auto">
-        <div class="alta-card p-8 sm:p-10 border-violet-500/20 bg-gradient-to-r from-violet-950/20 via-[#0A0D1D] to-blue-950/20 text-center space-y-4 relative">
+        <div class="alta-card p-8 sm:p-10 border-violet-500/20 bg-gradient-to-r from-violet-950/20 via-[#0A0D1D] to-blue-950/20 text-center space-y-4 relative reveal-on-scroll">
           <span class="text-3xl block text-violet-400 font-serif">“</span>
           <blockquote class="text-lg sm:text-xl font-medium text-slate-100 max-w-2xl mx-auto leading-relaxed -mt-3">
             First, solve the problem. Then, write the code.
@@ -654,7 +674,7 @@
 
     <!-- SECTION 9: FINAL CTA -->
     <section class="py-24 px-6 lg:px-12 border-t border-white/5 relative overflow-hidden bg-gradient-to-b from-[#070913] to-[#0B0F22]">
-      <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+      <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10 reveal-on-scroll">
         
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/50 border border-blue-500/30 text-blue-300 text-xs font-medium">
           <span>⚡</span> The Intelligent Way to Master DSA
@@ -778,7 +798,7 @@
           </div>
           <div class="overflow-hidden">
             <h4 id="sidebarUserName" class="text-xs font-bold text-slate-100 truncate">Alex Johnson</h4>
-            <p id="sidebarUserRole" class="text-[11px] text-cyan-400 truncate">Level 12 • Architect</p>
+            <p id="sidebarUserRole" class="text-[11px] text-cyan-400 truncate">Level 1 • Logic Novice</p>
           </div>
         </div>
         
@@ -786,10 +806,10 @@
         <div class="space-y-1">
           <div class="flex items-center justify-between text-[10px] text-slate-400">
             <span>XP Progress</span>
-            <span id="sidebarXpLabel" class="font-mono text-slate-300">4,250 / 5,000 XP</span>
+            <span id="sidebarXpLabel" class="font-mono text-slate-300">0 / 250 XP</span>
           </div>
           <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-            <div id="sidebarXpBar" class="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full" style="width: 85%"></div>
+            <div id="sidebarXpBar" class="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full" style="width: 0%"></div>
           </div>
         </div>
       </div>
@@ -832,7 +852,7 @@
 
         <button onclick="ALTA_APP.navigate('challenge-90')" data-view="challenge-90" class="sidebar-nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-slate-400 hover:text-slate-200 hover:bg-white/5">
           <span class="text-base">🔥</span> <span>90-Day Challenge</span>
-          <span class="ml-auto text-[9px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">Day 38</span>
+          <span class="ml-auto text-[9px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">Day 1</span>
         </button>
 
         <button onclick="ALTA_APP.navigate('certificate')" data-view="certificate" class="sidebar-nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-slate-400 hover:text-slate-200 hover:bg-white/5">
@@ -872,12 +892,12 @@
 
         <div class="flex items-center gap-3">
           
-          <div id="userStreakPill" title="14-Day Consistent Learning Streak" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold">
-            🔥 14d
+          <div id="userStreakPill" title="Daily Consistent Learning Streak" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold">
+            🔥 0d
           </div>
 
           <button onclick="ALTA_APP.toggleTokenModal(true)" id="userTokenPill" title="Click to view Token Economics & Transactions" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-cyan-950/60 to-purple-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-bold hover:border-cyan-400 transition-all cursor-pointer">
-            🪙 1,450
+            🪙 0
           </button>
 
           <div class="relative">
@@ -888,17 +908,17 @@
 
             <div id="notificationsDropdown" class="hidden absolute right-0 mt-2 w-80 rounded-2xl bg-slate-900 border border-white/10 shadow-2xl p-4 z-50 text-xs space-y-3">
               <div class="flex items-center justify-between border-b border-white/10 pb-2">
-                <span class="font-bold text-white">Notifications (3)</span>
+                <span class="font-bold text-white">Notifications (2)</span>
                 <span class="text-[10px] text-cyan-400 cursor-pointer">Mark all read</span>
               </div>
               <div class="space-y-2">
                 <div class="p-2 rounded-lg bg-cyan-950/20 border border-cyan-500/20 text-slate-300">
-                  <p class="font-bold text-cyan-400 text-[11px]">🎉 7-Day Consistency Reward</p>
-                  <p class="text-[10px] text-slate-400">+40 Tokens credited to your wallet.</p>
+                  <p class="font-bold text-cyan-400 text-[11px]">🎉 Welcome to ALTA</p>
+                  <p class="text-[10px] text-slate-400">Begin your first diagnostic challenge to earn logic tokens.</p>
                 </div>
                 <div class="p-2 rounded-lg bg-slate-800/40 text-slate-300">
-                  <p class="font-bold text-slate-200 text-[11px]">🔥 Streak at Risk</p>
-                  <p class="text-[10px] text-slate-400">Complete 1 logic challenge to keep your 14-day streak alive.</p>
+                  <p class="font-bold text-slate-200 text-[11px]">🔥 90-Day Challenge Active</p>
+                  <p class="text-[10px] text-slate-400">Solve today's challenge to initiate your learning streak.</p>
                 </div>
               </div>
             </div>
@@ -916,7 +936,7 @@
               </div>
               <div class="py-1">
                 <button onclick="ALTA_APP.navigate('profile-settings')" class="w-full text-left px-3 py-2 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Profile & Preferences</button>
-                <button onclick="ALTA_APP.toggleTokenModal(true)" class="w-full text-left px-3 py-2 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Token Wallet (+1,450)</button>
+                <button onclick="ALTA_APP.toggleTokenModal(true)" class="w-full text-left px-3 py-2 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">Token Wallet (0 ALTA)</button>
                 <button onclick="ALTA_APP.navigate('certificate')" class="w-full text-left px-3 py-2 text-slate-300 hover:text-white hover:bg-white/5 rounded-lg">My 90-Day Certificate</button>
                 <button onclick="ALTA_APP.togglePortalMode('landing')" class="w-full text-left px-3 py-2 text-cyan-400 hover:bg-white/5 rounded-lg">Switch to Landing Page</button>
               </div>
@@ -937,13 +957,13 @@
             <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div class="space-y-2">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 border border-cyan-500/30 text-cyan-400 text-xs font-semibold">
-                  <span>⚡</span> Level 12 Logic Architect • Active Session
+                  <span>⚡</span> Level 1 Logic Novice • Day 1 of 90-Day Challenge
                 </div>
                 <h1 class="text-2xl sm:text-3xl font-extrabold text-white">
-                  Welcome back, <span class="gradient-text-alta">Alex Johnson</span>!
+                  Welcome to <span class="gradient-text-alta">ALTA</span>!
                 </h1>
                 <p class="text-slate-400 text-xs sm:text-sm max-w-xl">
-                  Your reasoning consistency is in the top 5% this week. Today's target: finalize Hash Map invariants in Two Sum.
+                  Start your independent problem-solving journey today. Launch the AI Problem Studio to begin your first diagnostic session.
                 </p>
               </div>
               <div class="flex items-center gap-3 shrink-0">
@@ -962,10 +982,10 @@
                 <span class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-sm">🔥</span>
               </div>
               <div class="flex items-baseline gap-2">
-                <span class="text-2xl font-black text-white">14 Days</span>
-                <span class="text-[11px] text-emerald-400 font-semibold">+3 this week</span>
+                <span class="text-2xl font-black text-white">0 Days</span>
+                <span class="text-[11px] text-slate-400 font-semibold">Day 1</span>
               </div>
-              <p class="text-[10px] text-slate-500 mt-2">Next milestone badge at 30 days</p>
+              <p class="text-[10px] text-slate-500 mt-2">Solve 1 challenge today to start your streak</p>
             </div>
 
             <div class="glass-panel p-5 border-white/10 hover:border-cyan-500/30 cursor-pointer" onclick="ALTA_APP.toggleTokenModal(true)">
@@ -974,10 +994,10 @@
                 <span class="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-sm">🪙</span>
               </div>
               <div class="flex items-baseline gap-2">
-                <span class="text-2xl font-black text-white">1,450</span>
-                <span class="text-[11px] text-emerald-400 font-semibold">+120 earned</span>
+                <span class="text-2xl font-black text-white">0</span>
+                <span class="text-[11px] text-slate-400 font-semibold">0 earned</span>
               </div>
-              <p class="text-[10px] text-slate-500 mt-2">Awarded for independent logic</p>
+              <p class="text-[10px] text-slate-500 mt-2">Awarded for independent logic solves</p>
             </div>
 
             <div class="glass-panel p-5 border-white/10 hover:border-purple-500/30">
@@ -986,10 +1006,10 @@
                 <span class="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-sm">⚡</span>
               </div>
               <div class="flex items-baseline gap-2">
-                <span class="text-2xl font-black text-white">Level 12</span>
-                <span class="text-[11px] text-purple-400 font-semibold">Architect</span>
+                <span class="text-2xl font-black text-white">Level 1</span>
+                <span class="text-[11px] text-purple-400 font-semibold">Logic Novice</span>
               </div>
-              <p class="text-[10px] text-slate-500 mt-2">750 XP to Level 13 (Master)</p>
+              <p class="text-[10px] text-slate-500 mt-2">250 XP to Level 2</p>
             </div>
 
             <div class="glass-panel p-5 border-white/10 hover:border-emerald-500/30">
@@ -998,10 +1018,10 @@
                 <span class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm">🎯</span>
               </div>
               <div class="flex items-baseline gap-2">
-                <span class="text-2xl font-black text-white">84.2%</span>
-                <span class="text-[11px] text-emerald-400 font-semibold">+6.5% vs avg</span>
+                <span class="text-2xl font-black text-white">--%</span>
+                <span class="text-[11px] text-slate-400 font-semibold">New Learner</span>
               </div>
-              <p class="text-[10px] text-slate-500 mt-2">Solved without full solution reveal</p>
+              <p class="text-[10px] text-slate-500 mt-2">Calculated after your first problem</p>
             </div>
 
           </div>
@@ -1017,7 +1037,7 @@
                     <p class="text-xs text-slate-400">Total logic practice minutes across the last 7 days</p>
                   </div>
                   <span class="text-xs font-bold text-cyan-400 bg-cyan-950/50 px-3 py-1 rounded-full border border-cyan-500/30">
-                    390 mins total
+                    0 mins total
                   </span>
                 </div>
                 <div class="w-full h-44 flex items-center justify-center">
@@ -1061,15 +1081,15 @@
                     <span class="text-lg">🔥</span>
                     <h3 class="font-bold text-white text-xs">90-Day Challenge</h3>
                   </div>
-                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300">Day 38 of 90</span>
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300">Day 1 of 90</span>
                 </div>
                 <div class="space-y-2 mb-3">
                   <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                    <div class="h-full bg-gradient-to-r from-amber-500 to-cyan-400 rounded-full" style="width: 42.2%"></div>
+                    <div class="h-full bg-gradient-to-r from-amber-500 to-cyan-400 rounded-full" style="width: 1.1%"></div>
                   </div>
                   <div class="flex justify-between text-[10px] text-slate-400">
-                    <span>36 active days</span>
-                    <span class="text-cyan-400 font-semibold">Eligible for Honors</span>
+                    <span>0 active days</span>
+                    <span class="text-cyan-400 font-semibold">Honors Goal: 75 days</span>
                   </div>
                 </div>
                 <button onclick="ALTA_APP.navigate('challenge-90')" class="w-full py-2 text-xs text-center font-bold text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 rounded-xl border border-amber-500/20 transition-all">
@@ -1391,24 +1411,24 @@
 
               <div class="bg-slate-900/60 p-5 rounded-2xl border border-white/5 text-left text-xs space-y-3">
                 <div class="flex items-center justify-between text-slate-200">
-                  <span class="flex items-center gap-2">✓ Task 1: Single Pass Array Traversal</span>
-                  <span class="text-emerald-400 font-bold">Passed</span>
+                  <span class="flex items-center gap-2">○ Task 1: Single Pass Array Traversal</span>
+                  <span id="unlockTask1Status" class="text-amber-400 font-bold">Pending</span>
                 </div>
                 <div class="flex items-center justify-between text-slate-200">
-                  <span class="flex items-center gap-2">✓ Task 2: Complement Calculation Logic</span>
-                  <span class="text-emerald-400 font-bold">Passed</span>
+                  <span class="flex items-center gap-2">○ Task 2: Complement Calculation Logic</span>
+                  <span id="unlockTask2Status" class="text-amber-400 font-bold">Pending</span>
                 </div>
                 <div class="flex items-center justify-between text-slate-200">
-                  <span class="flex items-center gap-2">✓ Task 3: Hash Map Value-to-Index Storage</span>
-                  <span class="text-emerald-400 font-bold">Passed</span>
+                  <span class="flex items-center gap-2">○ Task 3: Hash Map Value-to-Index Storage</span>
+                  <span id="unlockTask3Status" class="text-amber-400 font-bold">Pending</span>
                 </div>
                 <div class="border-t border-white/10 pt-3 flex items-center justify-between font-bold">
                   <span>Prerequisites Met:</span>
-                  <span id="unlockTasksRatio" class="text-cyan-400">3 / 3</span>
+                  <span id="unlockTasksRatio" class="text-cyan-400">0 / 3</span>
                 </div>
               </div>
 
-              <button id="unlockOriginalBtn" onclick="ALTA_APP.goToLearnStep(6)" class="w-full py-3.5 rounded-xl font-bold text-xs bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 text-slate-950 shadow-xl shadow-cyan-400/20 hover:scale-105 transition-all">
+              <button id="unlockOriginalBtn" disabled onclick="ALTA_APP.goToLearnStep(6)" class="w-full py-3.5 rounded-xl font-bold text-xs bg-slate-800 text-slate-500 cursor-not-allowed">
                 Enter Original Problem Workspace →
               </button>
             </div>
@@ -1816,22 +1836,22 @@
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5">
                 <span class="text-[11px] text-slate-400">Problems Attempted</span>
-                <p class="text-2xl font-black text-white mt-1">48</p>
-                <span class="text-[10px] text-cyan-400">42 Successfully Solved</span>
+                <p class="text-2xl font-black text-white mt-1">0</p>
+                <span class="text-[10px] text-slate-500">0 Successfully Solved</span>
               </div>
               <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5">
                 <span class="text-[11px] text-slate-400">Independent Solve %</span>
-                <p class="text-2xl font-black text-emerald-400 mt-1">84.2%</p>
+                <p class="text-2xl font-black text-emerald-400 mt-1">--%</p>
                 <span class="text-[10px] text-slate-500">Industry benchmark: 52%</span>
               </div>
               <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5">
                 <span class="text-[11px] text-slate-400">Coding Accuracy</span>
-                <p class="text-2xl font-black text-purple-400 mt-1">91.4%</p>
+                <p class="text-2xl font-black text-purple-400 mt-1">--%</p>
                 <span class="text-[10px] text-slate-500">First-pass test passes</span>
               </div>
               <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5">
                 <span class="text-[11px] text-slate-400">Hint Dependency</span>
-                <p class="text-2xl font-black text-cyan-400 mt-1">Low (1.1 avg)</p>
+                <p class="text-2xl font-black text-cyan-400 mt-1">None</p>
                 <span class="text-[10px] text-emerald-400">Zero solution unlocks</span>
               </div>
             </div>
@@ -1852,7 +1872,7 @@
               <div>
                 <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest">Intensive Program</span>
                 <h2 class="text-2xl font-black text-white mt-1">The 90-Day Logic Challenge</h2>
-                <p class="text-xs text-slate-400 mt-1">Started Oct 1, 2026 • 38 Days Elapsed • 36 Active Practice Days</p>
+                <p class="text-xs text-slate-400 mt-1">Day 1 of 90 • 0 Days Elapsed • 0 Active Practice Days</p>
               </div>
               <button onclick="ALTA_APP.navigate('certificate')" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-amber-500/20 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 transition-all shrink-0">
                 Check Certificate Eligibility →
@@ -1888,9 +1908,9 @@
 
               <div class="flex items-center gap-2 bg-slate-900 p-1 rounded-xl border border-white/10 text-xs">
                 <span class="text-[10px] text-slate-500 px-2">Preview State:</span>
-                <button onclick="ALTA_APP.setCertificateState('not-eligible')" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white">Not Eligible</button>
+                <button onclick="ALTA_APP.setCertificateState('not-eligible')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-white font-bold border border-white/20">Not Eligible</button>
                 <button onclick="ALTA_APP.setCertificateState('in-progress')" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white">In Progress</button>
-                <button onclick="ALTA_APP.setCertificateState('eligible')" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">Eligible (Full Certificate)</button>
+                <button onclick="ALTA_APP.setCertificateState('eligible')" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white">Eligible (Full Certificate)</button>
               </div>
             </div>
 
@@ -2090,10 +2110,10 @@
       <div class="p-4 rounded-2xl bg-gradient-to-r from-cyan-950/40 to-purple-950/40 border border-cyan-500/20 flex items-center justify-between">
         <div>
           <span class="text-xs text-slate-400">Available Balance</span>
-          <p class="text-3xl font-black text-white mt-1">1,450 <span class="text-xs font-semibold text-cyan-400">ALTA</span></p>
+          <p id="tokenModalBalance" class="text-3xl font-black text-white mt-1">0 <span class="text-xs font-semibold text-cyan-400">ALTA</span></p>
         </div>
         <span class="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-3 py-1.5 rounded-full border border-emerald-500/30">
-          +120 This Week
+          Day 1 Active
         </span>
       </div>
 

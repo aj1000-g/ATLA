@@ -1,13 +1,14 @@
 /**
  * ALTA - Main Application Controller
- * Handles Navigation, State Management, Views, and Interactive Components
+ * Handles Navigation, State Management, Views, and Interactive Animations
  */
 
 const ALTA_APP = {
   currentView: 'overview',
   currentLearnStep: 1,
-  activeCertificateState: 'in-progress', // 'not-eligible', 'in-progress', 'eligible'
+  activeCertificateState: 'not-eligible', // Starts as honest 'not-eligible' for Day 1
   sidebarOpen: false,
+  rotatorInterval: null,
 
   init: function() {
     this.renderHeaderUserInfo();
@@ -20,6 +21,8 @@ const ALTA_APP = {
     this.renderProfileAndSettings();
     this.renderTokenDashboard();
     this.setupEventListeners();
+    this.initHeroTextRotator();
+    this.initScrollReveal();
 
     // Initialize sub-engines
     if (window.ALTA_AI) ALTA_AI.init();
@@ -28,6 +31,57 @@ const ALTA_APP = {
         ALTA_GAMES.loopRunner.init('loopRunnerCanvas');
         ALTA_GAMES.arrayQuest.init();
       }, 200);
+    }
+  },
+
+  // 1. ANIMATION: Rotating Headline Text in Hero
+  initHeroTextRotator: function() {
+    const el = document.getElementById('heroRotatingText');
+    if (!el) return;
+
+    const phrases = ["Build Logic", "Think Better", "Solve Independently", "Master Invariants"];
+    let idx = 0;
+
+    if (this.rotatorInterval) clearInterval(this.rotatorInterval);
+
+    this.rotatorInterval = setInterval(() => {
+      // Fade out
+      el.classList.remove('text-rotate-visible');
+      el.classList.add('text-rotate-hidden');
+
+      setTimeout(() => {
+        idx = (idx + 1) % phrases.length;
+        el.textContent = phrases[idx];
+        // Fade in
+        el.classList.remove('text-rotate-hidden');
+        el.classList.add('text-rotate-visible');
+      }, 350);
+    }, 2800);
+  },
+
+  // 2. ANIMATION: Viewport Scroll Reveal (Intersection Observer)
+  initScrollReveal: function() {
+    // Check user preference for reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const elements = document.querySelectorAll('.reveal-on-scroll');
+    if (!elements || elements.length === 0) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      elements.forEach(el => observer.observe(el));
+    } else {
+      // Fallback
+      elements.forEach(el => el.classList.add('revealed'));
     }
   },
 
@@ -94,6 +148,8 @@ const ALTA_APP = {
     if (mode === 'landing') {
       landing?.classList.remove('hidden');
       portal?.classList.add('hidden');
+      this.initHeroTextRotator();
+      this.initScrollReveal();
     } else {
       landing?.classList.add('hidden');
       portal?.classList.remove('hidden');
@@ -145,51 +201,69 @@ const ALTA_APP = {
     if (authorEl) authorEl.textContent = `— ${randomQuote.author}`;
     if (tipEl) tipEl.textContent = `💡 Cognitive Tip: ${randomQuote.tip}`;
 
-    // Recent activities list
+    // Recent activities list with honest empty state
     const actList = document.getElementById('overviewRecentActivities');
     if (actList) {
       actList.innerHTML = '';
-      ALTA_DATA.recentActivities.forEach(act => {
-        const row = document.createElement('div');
-        row.className = 'flex items-center justify-between p-3 rounded-xl border border-white/5 hover:border-white/10 bg-slate-900/40 transition-all';
-        row.innerHTML = `
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs">
-              ⚡
-            </div>
-            <div>
-              <p class="text-xs font-semibold text-slate-200">${act.title}</p>
-              <p class="text-[10px] text-slate-400">${act.category} • ${act.time}</p>
-            </div>
-          </div>
-          <div class="text-right">
-            <span class="text-xs font-bold text-emerald-400">${act.tokens}</span>
-            <p class="text-[10px] text-slate-400">${act.accuracy}</p>
+      if (!ALTA_DATA.recentActivities || ALTA_DATA.recentActivities.length === 0) {
+        actList.innerHTML = `
+          <div class="p-4 text-center rounded-xl border border-white/5 bg-slate-900/40 text-xs text-slate-400 space-y-1">
+            <p class="font-bold text-slate-300">No coding sessions recorded yet</p>
+            <p class="text-[11px] text-slate-500">Solve your first diagnostic task below to start your streak!</p>
           </div>
         `;
-        actList.appendChild(row);
-      });
+      } else {
+        ALTA_DATA.recentActivities.forEach(act => {
+          const row = document.createElement('div');
+          row.className = 'flex items-center justify-between p-3 rounded-xl border border-white/5 hover:border-white/10 bg-slate-900/40 transition-all';
+          row.innerHTML = `
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs">
+                ⚡
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-slate-200">${act.title}</p>
+                <p class="text-[10px] text-slate-400">${act.category} • ${act.time}</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-bold text-emerald-400">${act.tokens}</span>
+              <p class="text-[10px] text-slate-400">${act.accuracy}</p>
+            </div>
+          `;
+          actList.appendChild(row);
+        });
+      }
     }
 
-    // Recent Badges Row
+    // Recent Badges Row with honest empty state
     const badgeRow = document.getElementById('overviewRecentBadges');
     if (badgeRow) {
       badgeRow.innerHTML = '';
-      const unlocked = ALTA_DATA.badges.filter(b => b.unlocked).slice(0, 4);
-      unlocked.forEach(b => {
-        const badge = document.createElement('div');
-        badge.className = 'flex items-center gap-2 p-2.5 rounded-xl border border-white/10 bg-slate-900/40';
-        badge.innerHTML = `
-          <div class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-sm">
-            ${b.icon}
-          </div>
-          <div>
-            <p class="text-xs font-bold text-slate-200 truncate max-w-[100px]">${b.title}</p>
-            <span class="text-[10px] text-purple-400">${b.tier}</span>
+      const unlocked = ALTA_DATA.badges.filter(b => b.unlocked);
+      if (unlocked.length === 0) {
+        badgeRow.innerHTML = `
+          <div class="col-span-2 p-3 text-center rounded-xl border border-white/5 bg-slate-900/40 text-xs text-slate-400 space-y-1">
+            <p class="font-bold text-slate-300">All 8 badges locked</p>
+            <p class="text-[10px] text-slate-500">Earn your first badge by solving a logic challenge!</p>
           </div>
         `;
-        badgeRow.appendChild(badge);
-      });
+      } else {
+        unlocked.slice(0, 4).forEach(b => {
+          const badge = document.createElement('div');
+          badge.className = 'flex items-center gap-2 p-2.5 rounded-xl border border-white/10 bg-slate-900/40';
+          badge.innerHTML = `
+            <div class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-sm">
+              ${b.icon}
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-200 truncate max-w-[100px]">${b.title}</p>
+              <span class="text-[10px] text-purple-400">${b.tier}</span>
+            </div>
+          `;
+          badgeRow.appendChild(badge);
+        });
+      }
     }
 
     // Render Weekly Activity SVG Chart
@@ -201,15 +275,14 @@ const ALTA_APP = {
     if (!chartSvg) return;
 
     const data = ALTA_DATA.weeklyActivity.minutes;
-    const maxVal = Math.max(...data, 100);
+    const maxVal = Math.max(...data, 60);
     const height = 140;
     const width = 360;
     const stepX = width / (data.length - 1);
 
-    // Compute points for spline
     const points = data.map((val, idx) => {
       const x = idx * stepX;
-      const y = height - (val / maxVal) * (height - 30) - 15;
+      const y = height - (val / maxVal) * (height - 30) - 20;
       return { x, y, val };
     });
 
@@ -217,8 +290,6 @@ const ALTA_APP = {
     for (let i = 0; i < points.length - 1; i++) {
       const xMid = (points[i].x + points[i + 1].x) / 2;
       const yMid = (points[i].y + points[i + 1].y) / 2;
-      const cpX1 = (xMid + points[i].x) / 2;
-      const cpX2 = (xMid + points[i + 1].x) / 2;
       pathD += ` Q ${points[i].x} ${points[i].y}, ${xMid} ${yMid} T ${points[i + 1].x} ${points[i + 1].y}`;
     }
 
@@ -227,7 +298,7 @@ const ALTA_APP = {
     chartSvg.innerHTML = `
       <defs>
         <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.45"/>
+          <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.35"/>
           <stop offset="100%" stop-color="#7928CA" stop-opacity="0.0"/>
         </linearGradient>
         <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
@@ -236,9 +307,9 @@ const ALTA_APP = {
         </linearGradient>
       </defs>
       <path d="${areaD}" fill="url(#chartGrad)"/>
-      <path d="${pathD}" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linecap="round"/>
+      <path d="${pathD}" fill="none" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round"/>
       ${points.map((p, i) => `
-        <circle cx="${p.x}" cy="${p.y}" r="4" fill="#0B0D1A" stroke="#00F2FE" stroke-width="2"/>
+        <circle cx="${p.x}" cy="${p.y}" r="3.5" fill="#070913" stroke="#00F2FE" stroke-width="2"/>
         <text x="${p.x}" y="${height - 2}" font-size="9" fill="#64748B" text-anchor="middle">${ALTA_DATA.weeklyActivity.days[i]}</text>
       `).join('')}
     `;
@@ -259,7 +330,7 @@ const ALTA_APP = {
       card.className = `glass-panel p-5 relative overflow-hidden transition-all duration-300 ${
         badge.unlocked 
           ? 'border-white/10 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10' 
-          : 'border-white/5 opacity-70 bg-slate-950/40'
+          : 'border-white/5 opacity-75 bg-slate-950/40'
       }`;
 
       card.innerHTML = `
@@ -267,7 +338,7 @@ const ALTA_APP = {
           <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl ${
             badge.unlocked 
               ? 'bg-slate-800/80 border border-white/10 shadow-inner' 
-              : 'bg-slate-900 border border-white/5 grayscale opacity-50'
+              : 'bg-slate-900 border border-white/5 opacity-60'
           }">
             ${badge.icon}
           </div>
@@ -290,8 +361,8 @@ const ALTA_APP = {
                  </div>`
               : `<div class="space-y-1.5">
                    <div class="flex items-center justify-between text-[10px] text-slate-400">
-                     <span>🔒 In Progress</span>
-                     <span>${badge.progressLabel || badge.progress + '%'}</span>
+                     <span>🔒 Locked</span>
+                     <span class="font-mono text-slate-300">${badge.progressLabel || badge.progress + '%'}</span>
                    </div>
                    <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
                      <div class="h-full bg-cyan-400 rounded-full" style="width: ${badge.progress}%"></div>
@@ -381,10 +452,10 @@ const ALTA_APP = {
         <div class="flex items-center justify-between mb-2">
           <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${
             m.status === 'completed' ? 'bg-emerald-500/20 text-emerald-400' :
-            m.status === 'in-progress' ? 'bg-cyan-500/20 text-cyan-300 animate-pulse' :
+            m.status === 'in-progress' ? 'bg-cyan-500/20 text-cyan-300' :
             'bg-slate-800 text-slate-500'
           }">
-            ${m.status === 'completed' ? 'Completed' : m.status === 'in-progress' ? 'Current Focus' : 'Locked'}
+            ${m.status === 'completed' ? 'Completed' : m.status === 'in-progress' ? 'Current Focus (Week 1)' : 'Locked'}
           </span>
           <span class="text-xs font-mono text-slate-400">Week ${m.week}</span>
         </div>
@@ -408,35 +479,40 @@ const ALTA_APP = {
 
     if (state === 'not-eligible') {
       container.innerHTML = `
-        <div class="glass-panel p-8 text-center max-w-xl mx-auto border-rose-500/30 bg-rose-950/10">
-          <div class="w-16 h-16 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center text-3xl mx-auto mb-4">
-            ⚠️
+        <div class="glass-panel p-8 text-center max-w-xl mx-auto border-cyan-500/30 bg-slate-900/40">
+          <div class="w-16 h-16 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-3xl mx-auto mb-4">
+            📜
           </div>
-          <h3 class="text-lg font-bold text-slate-100 mb-2">Certificate Status: Not Yet Eligible</h3>
+          <h3 class="text-lg font-bold text-slate-100 mb-1">Status: Day 1 of 90-Day Challenge</h3>
           <p class="text-xs text-slate-400 mb-6 leading-relaxed">
-            ALTA certificates represent genuine verified problem-solving and algorithmic logic independence. Simply logging in for 90 days does not guarantee issuance.
+            ALTA honors certificates require demonstrated independent problem-solving. No certificate is issued purely for attendance.
           </p>
-          <div class="text-left bg-slate-900/60 p-4 rounded-xl border border-white/5 text-xs space-y-2 mb-6">
-            <div class="flex items-center justify-between text-rose-300">
-              <span>✕ Minimum 75 Active Practice Days</span>
-              <span>36 / 75</span>
+          <div class="text-left bg-slate-900/80 p-4 rounded-xl border border-white/5 text-xs space-y-2.5 mb-6 font-mono">
+            <div class="flex items-center justify-between text-slate-300">
+              <span>• Minimum 75 Active Practice Days</span>
+              <span class="text-amber-400 font-bold">0 / 75</span>
             </div>
-            <div class="flex items-center justify-between text-rose-300">
-              <span>✕ Complete 60 Foundational Tasks</span>
-              <span>48 / 60</span>
+            <div class="flex items-center justify-between text-slate-300">
+              <span>• Complete 60 Foundational Tasks</span>
+              <span class="text-amber-400 font-bold">0 / 60</span>
             </div>
-            <div class="flex items-center justify-between text-emerald-400">
-              <span>✓ Independent Problem Solving > 70%</span>
-              <span>84.2%</span>
+            <div class="flex items-center justify-between text-slate-300">
+              <span>• Independent Problem Solving > 70%</span>
+              <span class="text-amber-400 font-bold">0.0% (Pending)</span>
             </div>
-            <div class="flex items-center justify-between text-rose-300">
-              <span>✕ Pass Day 80 Capstone Assessment</span>
-              <span>Pending</span>
+            <div class="flex items-center justify-between text-slate-300">
+              <span>• Pass Day 80 Capstone Assessment</span>
+              <span class="text-slate-500">Locked</span>
             </div>
           </div>
-          <button onclick="ALTA_APP.navigate('learn-ai')" class="px-6 py-2.5 rounded-xl font-bold bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 text-xs shadow-lg shadow-cyan-500/20">
-            Resume Foundational Tasks
-          </button>
+          <div class="flex justify-center gap-3">
+            <button onclick="ALTA_APP.goToLearnStep(1)" class="px-6 py-2.5 rounded-xl font-bold bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs shadow-lg shadow-cyan-400/20">
+              Start Day 1 Challenge Now →
+            </button>
+            <button onclick="ALTA_APP.setCertificateState('eligible')" class="px-4 py-2.5 rounded-xl text-xs bg-slate-800 text-slate-300 border border-white/10 hover:text-white">
+              Preview Certificate Template
+            </button>
+          </div>
         </div>
       `;
     } else if (state === 'in-progress') {
@@ -445,18 +521,15 @@ const ALTA_APP = {
           <div class="w-16 h-16 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-pulse">
             ⏳
           </div>
-          <h3 class="text-lg font-bold text-slate-100 mb-2">Certificate Status: In Progress (Day 38 of 90)</h3>
+          <h3 class="text-lg font-bold text-slate-100 mb-2">Certificate Status: In Progress</h3>
           <p class="text-xs text-slate-300 mb-6 leading-relaxed">
-            You are on track for the <strong>Honors Certificate in Algorithmic Logic & Thinking</strong>. Keep maintaining consistency!
+            Consistently solving foundational tasks advances your eligibility. Keep maintaining daily streak!
           </p>
-          <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden mb-6">
-            <div class="h-full bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full" style="width: 48%"></div>
-          </div>
           <div class="flex justify-center gap-3">
             <button onclick="ALTA_APP.setCertificateState('eligible')" class="px-4 py-2 rounded-xl text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 border border-white/10">
               Preview Eligible State
             </button>
-            <button onclick="ALTA_APP.navigate('learn-ai')" class="px-5 py-2 rounded-xl font-bold bg-cyan-500 text-slate-950 text-xs shadow-lg shadow-cyan-500/20">
+            <button onclick="ALTA_APP.goToLearnStep(1)" class="px-5 py-2 rounded-xl font-bold bg-cyan-500 text-slate-950 text-xs shadow-lg shadow-cyan-500/20">
               Continue Challenge
             </button>
           </div>
@@ -475,10 +548,12 @@ const ALTA_APP = {
               <button onclick="window.print()" class="px-4 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-bold text-xs rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all">
                 🖨️ Print / Save as PDF
               </button>
+              <button onclick="ALTA_APP.setCertificateState('not-eligible')" class="px-3 py-2 text-xs text-slate-400 hover:text-white">
+                Back to Initial State
+              </button>
             </div>
           </div>
 
-          <!-- THE PRINTABLE CERTIFICATE CONTAINER -->
           <div class="certificate-container rounded-lg" id="certificateModal">
             <div class="certificate-border-ornament"></div>
             
@@ -502,27 +577,25 @@ const ALTA_APP = {
                 </p>
               </div>
 
-              <!-- Metrics Summary -->
               <div class="grid grid-cols-4 gap-2 max-w-lg mx-auto my-4 text-center">
                 <div class="bg-slate-100 p-2 rounded border border-slate-300">
-                  <span class="block text-xs font-bold text-slate-800">84.2%</span>
+                  <span class="block text-xs font-bold text-slate-800">>70%</span>
                   <span class="text-[9px] text-slate-500">Independent Solve</span>
                 </div>
                 <div class="bg-slate-100 p-2 rounded border border-slate-300">
-                  <span class="block text-xs font-bold text-slate-800">78 Days</span>
+                  <span class="block text-xs font-bold text-slate-800">75+ Days</span>
                   <span class="text-[9px] text-slate-500">Active Practice</span>
                 </div>
                 <div class="bg-slate-100 p-2 rounded border border-slate-300">
-                  <span class="block text-xs font-bold text-slate-800">Level 12</span>
-                  <span class="text-[9px] text-slate-500">Architect Rank</span>
+                  <span class="block text-xs font-bold text-slate-800">Honors</span>
+                  <span class="text-[9px] text-slate-500">Merit Status</span>
                 </div>
                 <div class="bg-slate-100 p-2 rounded border border-slate-300">
-                  <span class="block text-xs font-bold text-slate-800">1,450</span>
-                  <span class="text-[9px] text-slate-500">Tokens Earned</span>
+                  <span class="block text-xs font-bold text-slate-800">Verified</span>
+                  <span class="text-[9px] text-slate-500">SHA-256 Hash</span>
                 </div>
               </div>
 
-              <!-- Signatures & Seal -->
               <div class="flex items-end justify-between px-6 pt-4 border-t border-slate-200">
                 <div class="text-left">
                   <p class="font-serif italic text-sm text-slate-800">Dr. Sarah Vance</p>
@@ -554,6 +627,15 @@ const ALTA_APP = {
     if (!list) return;
 
     list.innerHTML = '';
+    if (!ALTA_DATA.tokenTransactions || ALTA_DATA.tokenTransactions.length === 0) {
+      list.innerHTML = `
+        <div class="p-4 text-center rounded-xl border border-white/5 bg-slate-900/40 text-xs text-slate-400">
+          No transactions yet. Complete foundational tasks to earn your first ALTA tokens!
+        </div>
+      `;
+      return;
+    }
+
     ALTA_DATA.tokenTransactions.forEach(tx => {
       const row = document.createElement('div');
       row.className = 'flex items-center justify-between p-3 rounded-xl border border-white/5 bg-slate-900/40 text-xs';
@@ -578,7 +660,6 @@ const ALTA_APP = {
 
   // SECTION: Profile & Settings
   renderProfileAndSettings: function() {
-    // Fill user stats in profile
     const nameEl = document.getElementById('profileUserName');
     const emailEl = document.getElementById('profileUserEmail');
     if (nameEl) nameEl.textContent = ALTA_DATA.user.name;

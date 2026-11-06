@@ -1,25 +1,26 @@
 /* ==========================================================================
    ALTA - AI-Powered Logic & Thinking Academy
-   Custom Design System & Neon Cyber-Glassmorphism Styles
+   Custom Design System, Soft Glows & Lightweight CSS Animations
    ========================================================================== */
 
 :root {
-  --bg-deep: #08090E;
-  --bg-surface: #0E101A;
-  --bg-surface-elevated: #151828;
-  --bg-card: rgba(21, 24, 40, 0.7);
-  --bg-card-hover: rgba(28, 33, 56, 0.85);
+  --bg-deep: #070913;
+  --bg-surface: #0D1122;
+  --bg-surface-elevated: #131830;
+  --bg-card: rgba(13, 17, 34, 0.75);
+  --bg-card-hover: rgba(19, 24, 48, 0.9);
   
-  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-subtle: rgba(255, 255, 255, 0.08);
   --border-glow: rgba(0, 242, 254, 0.35);
-  --border-glow-purple: rgba(168, 85, 247, 0.4);
+  --border-glow-purple: rgba(139, 92, 246, 0.4);
 
-  --accent-cyan: #00F2FE;
-  --accent-cyan-glow: rgba(0, 242, 254, 0.3);
-  --accent-purple: #A855F7;
-  --accent-purple-dark: #7928CA;
+  --accent-cyan: #06B6D4;
+  --accent-cyan-glow: rgba(6, 182, 212, 0.25);
+  --accent-purple: #8B5CF6;
+  --accent-purple-dark: #6D28D9;
+  --accent-blue: #3B82F6;
   --accent-emerald: #10B981;
-  --accent-emerald-glow: rgba(16, 185, 129, 0.25);
+  --accent-emerald-glow: rgba(16, 185, 129, 0.2);
   --accent-amber: #F59E0B;
   --accent-rose: #F43F5E;
 
@@ -57,11 +58,11 @@ html, body {
   background: var(--bg-deep);
 }
 ::-webkit-scrollbar-thumb {
-  background: #22273D;
+  background: #1E2338;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #333B5E;
+  background: #2E3756;
 }
 
 /* Glassmorphic Surfaces */
@@ -75,7 +76,7 @@ html, body {
 }
 
 .glass-panel:hover {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(139, 92, 246, 0.3);
 }
 
 .glass-card-interactive {
@@ -86,7 +87,7 @@ html, body {
 .glass-card-interactive:hover {
   transform: translateY(-3px);
   border-color: var(--border-glow);
-  box-shadow: 0 12px 30px -10px rgba(0, 242, 254, 0.15);
+  box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.15);
 }
 
 /* Neon Glow Accents */
@@ -94,21 +95,27 @@ html, body {
   box-shadow: 0 0 25px -4px var(--accent-cyan-glow);
 }
 .glow-purple {
-  box-shadow: 0 0 25px -4px rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 25px -4px rgba(139, 92, 246, 0.3);
 }
 .glow-emerald {
   box-shadow: 0 0 25px -4px var(--accent-emerald-glow);
 }
 .glow-text-cyan {
-  text-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+  text-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
 }
 .glow-text-purple {
-  text-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+  text-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
 }
 
 /* Gradients */
 .gradient-text-alta {
-  background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 40%, #A855F7 100%);
+  background: linear-gradient(135deg, #00F2FE 0%, #3B82F6 50%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.alta-gradient-accent {
+  background: linear-gradient(135deg, #60A5FA 0%, #8B5CF6 50%, #C084FC 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -120,15 +127,43 @@ html, body {
 }
 
 .gradient-bg-purple {
-  background: linear-gradient(135deg, #7928CA 0%, #A855F7 100%);
+  background: linear-gradient(135deg, #6D28D9 0%, #8B5CF6 100%);
 }
 
 .gradient-bg-cyan {
-  background: linear-gradient(135deg, #00F2FE 0%, #0284C7 100%);
+  background: linear-gradient(135deg, #06B6D4 0%, #0284C7 100%);
 }
 
 .gradient-bg-emerald {
   background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+/* Reusable Buttons */
+.alta-btn-primary {
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  color: #FFFFFF;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px -2px rgba(139, 92, 246, 0.35);
+}
+
+.alta-btn-primary:hover {
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  box-shadow: 0 6px 28px -2px rgba(139, 92, 246, 0.55);
+  transform: translateY(-1px);
+}
+
+.alta-btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #E2E8F0;
+  transition: all 0.25s ease;
+}
+
+.alta-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  transform: translateY(-1px);
 }
 
 /* Badges & Tags */
@@ -145,7 +180,7 @@ html, body {
 }
 
 .badge-epic {
-  background: rgba(168, 85, 247, 0.15);
+  background: rgba(139, 92, 246, 0.15);
   color: #C084FC;
   border: 1px solid rgba(192, 132, 252, 0.4);
 }
@@ -180,42 +215,101 @@ html, body {
   white-space: pre;
 }
 
-/* Animations */
+/* ==========================================================================
+   ANIMATIONS & MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* 1. Subtle Floating Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes floatSlowAlt {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.floating-card {
+  animation: floatSlow 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.floating-card-alt {
+  animation: floatSlowAlt 6s ease-in-out infinite 0.5s;
+  will-change: transform;
+}
+
+/* 2. Rotating Text Transition */
+.text-rotate-wrapper {
+  display: inline-block;
+  min-width: 220px;
+}
+
+.text-rotate-item {
+  display: inline-block;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text-rotate-hidden {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.text-rotate-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3. Viewport Scroll Reveal */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 4. Ambient Pulse Glow */
 @keyframes pulseGlow {
   0%, 100% {
     transform: scale(1);
     opacity: 0.85;
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.35);
   }
   50% {
-    transform: scale(1.06);
+    transform: scale(1.04);
     opacity: 1;
-    box-shadow: 0 0 35px rgba(168, 85, 247, 0.8);
+    box-shadow: 0 0 32px rgba(139, 92, 246, 0.55);
   }
 }
 
-@keyframes floatBob {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
+.animate-pulse-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
 }
 
+/* 5. Typing Indicator */
 @keyframes typingBlink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
 
-.animate-pulse-glow {
-  animation: pulseGlow 3.5s infinite ease-in-out;
-}
-
-.animate-float {
-  animation: floatBob 4s infinite ease-in-out;
-}
-
 .typing-dot {
   width: 6px;
   height: 6px;
-  background: #00F2FE;
+  background: var(--accent-cyan);
   border-radius: 50%;
   display: inline-block;
   animation: typingBlink 1.2s infinite;
@@ -223,44 +317,44 @@ html, body {
 .typing-dot:nth-child(2) { animation-delay: 0.2s; }
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-/* Global AI Assistant Orb */
+/* 6. Global AI Assistant Orb */
 .ai-orb-button {
   position: fixed;
   bottom: 24px;
   right: 28px;
   z-index: 999;
-  width: 60px;
-  height: 60px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #00F2FE 0%, #7928CA 60%, #FF0080 100%);
+  background: linear-gradient(135deg, #00F2FE 0%, #6D28D9 65%, #EC4899 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 30px rgba(0, 242, 254, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4), inset 0 0 12px rgba(255, 255, 255, 0.5);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .ai-orb-button:hover {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 12px 40px rgba(168, 85, 247, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.7);
+  transform: scale(1.08) rotate(4deg);
+  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.6), inset 0 0 16px rgba(255, 255, 255, 0.7);
 }
 
 .ai-orb-panel {
   position: fixed;
   bottom: 96px;
   right: 28px;
-  width: 400px;
+  width: 390px;
   max-width: calc(100vw - 32px);
-  height: 560px;
+  height: 540px;
   max-height: calc(100vh - 120px);
   z-index: 1000;
   border-radius: 20px;
-  background: rgba(14, 16, 26, 0.94);
+  background: rgba(13, 17, 34, 0.95);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 242, 254, 0.3);
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px -10px rgba(0, 242, 254, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px -10px rgba(6, 182, 212, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -272,11 +366,11 @@ html, body {
   background: #FFFFFF;
   color: #0F172A;
   width: 100%;
-  max-width: 880px;
+  max-width: 860px;
   aspect-ratio: 1.414 / 1;
   margin: 0 auto;
   position: relative;
-  padding: 48px;
+  padding: 44px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
   border: 12px double #1E293B;
   background-image: 
@@ -295,8 +389,8 @@ html, body {
 }
 
 .certificate-seal {
-  width: 90px;
-  height: 90px;
+  width: 86px;
+  height: 86px;
   border-radius: 50%;
   background: radial-gradient(circle, #FDE68A 0%, #D97706 70%, #92400E 100%);
   display: flex;
@@ -337,9 +431,19 @@ html, body {
   }
 }
 
-/* Responsive sidebar drawer adjustments */
-@media (max-width: 1024px) {
-  .sidebar-collapsed {
-    transform: translateX(-100%);
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .floating-card, .floating-card-alt, .animate-pulse-glow {
+    animation: none !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
