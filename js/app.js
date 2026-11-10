@@ -702,7 +702,11 @@ const ALTA_APP = {
   }
 };
 
-// Auto-run on DOM Ready
-document.addEventListener('DOMContentLoaded', () => {
+// Auto-run on DOM Ready (supports both direct file loading and async initialization)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    ALTA_APP.init();
+  });
+} else {
   ALTA_APP.init();
-});
+}
